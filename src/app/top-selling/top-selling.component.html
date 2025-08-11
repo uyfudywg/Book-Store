@@ -1,0 +1,95 @@
+<!-- Head Section -->
+<div class="d-flex justify-content-between">
+  <h2 class="fs-1 fw-bold">Top Selling Books</h2>
+  <a
+    href="#"
+    routerLink="/shop"
+    (click)="scrollToTop()"
+    class="explore-btn btn rounded-5 me-2"
+    >Explore More <i class="fa-solid fa-arrow-right-long ms-2"></i
+  ></a>
+</div>
+<!-- Body Section -->
+<swiper-container
+  [slidesPerView]="checkSizeOfWindow()"
+  [loop]="true"
+  [autoplay]="{ delay: 2000, disableOnInteraction: false }"
+  autoplay="true"
+  speed="1000"
+  class="mySwiper mt-5"
+>
+  @for (book of books.slice(8, 20); track book.id) {
+  <swiper-slide class="w-fit">
+    <!-- Image -->
+    <figure
+      class="text-center rounded-3 mb-0 bg-body-secondary position-relative p-4 mx-auto"
+      style="width: 90%"
+    >
+      <img
+        style="height: 200px"
+        [src]="book.volumeInfo.imageLinks.smallThumbnail"
+        [alt]="book.volumeInfo.title"
+      />
+      <!-- Icons -->
+      <div class="icons-shop position-absolute">
+        <i
+          class="fa-regular fa-heart"
+          title="Add To Wishlist"
+          [id]="book.id"
+          (click)="addOrRemoveToWishlist(book.id)"
+        ></i>
+        <a href="#" routerLink="/cart" class="text-black text-decoration-none">
+          <i class="fa-solid fa-shuffle"></i>
+        </a>
+        <i class="fa-regular fa-eye" (click)="navigateToBook(book.id)"></i>
+      </div>
+    </figure>
+    <!-- Content -->
+    <div class="content p-3">
+      <!-- Category -->
+      <p class="text-black-50 fw-medium mb-2">
+        {{ book.volumeInfo.categories }}
+      </p>
+      <!-- Title -->
+      <h5
+        class="book-title fw-bold"
+        (click)="navigateToBook(book.id)"
+        style="color: var(--blue)"
+      >
+        {{ book.volumeInfo.title | slice : 0 : 24 }}
+      </h5>
+      <!-- Price -->
+      <p style="color: var(--orange); font-size: 14px" class="fw-bold">
+        {{
+          book.saleInfo.listPrice.amount | currency : "EGP" : "symbol-narrow"
+        }}
+      </p>
+      <div class="d-flex justify-content-between">
+        <!-- Author -->
+        <figure class="author w-fit">
+          <img
+            src="../../assets/images/publisher-placeholder.jpg"
+            alt="Author"
+            class="publisher-img rounded-circle me-2"
+          />
+          @if ( book.volumeInfo.authors) {
+          <span>{{ checkTextLength(book.volumeInfo.authors[0]) }}</span>
+          } @else {
+          <span>Basem Sameh</span>
+          }
+        </figure>
+        <div class="ms-auto w-fit" style="color: var(--orange)">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+      <button class="btn add-cart-btn w-100" (click)="navigateToBook(book.id)">
+        <i class="fa-solid fa-basket-shopping"></i> Add To Cart
+      </button>
+    </div>
+  </swiper-slide>
+  }
+</swiper-container>

@@ -1,0 +1,102 @@
+@import "swiper/swiper-bundle.css";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.2s linear 0s;
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --light-main-color: #d0e1e7;
+  --main-color: #036280;
+  --blue: #012e4a;
+  --white: #fff;
+  --black: #000;
+  --orange: #ff6500;
+  --star-color: #ffa41b;
+}
+
+.w-fit {
+  width: fit-content;
+}
+
+.btn-main {
+  background-color: var(--main-color) !important;
+  color: var(--white) !important;
+  font-weight: 700 !important;
+  padding: 10px 20px !important;
+  font-size: 18px !important;
+}
+
+.btn-main:hover {
+  background-color: var(--orange) !important;
+}
+
+/* Next and previous buttons of swiper */
+.custom-prev,
+.custom-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: var(--white);
+  z-index: 3;
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  border: 1px solid var(--white);
+  opacity: 0;
+}
+
+.custom-prev:hover,
+.custom-next:hover {
+  background-color: var(--orange) !important;
+}
+
+.custom-prev {
+  left: 5px;
+}
+
+.custom-next {
+  right: 5px;
+}
+
+/* Style the scrollbar track (background) */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #82b1c0;
+}
+
+/* Style the scrollbar handle (the thumb) */
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  height: 50px;
+}
+
+.add-cart-btn {
+  background-color: var(--light-main-color) !important;
+  color: var(--main-color) !important;
+  padding: 10px 20px !important;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Public health service publication */
+.add-cart-btn:hover {
+  background-color: var(--orange) !important;
+  color: var(--white) !important;
+}
+
+i[title="Add To Wishlist"].fa-solid {
+  color: red;
+}
